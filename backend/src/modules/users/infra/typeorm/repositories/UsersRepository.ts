@@ -11,11 +11,11 @@ export default class UsersRepository implements IUsersRepository {
         this.ormRepository = getRepository(User);
     }
 
-    findById(id: string): Promise<User | undefined> {
+    async findById(id: string): Promise<User | undefined> {
         return this.ormRepository.findOne(id);
     }
 
-    findByEmail(email: string): Promise<User | undefined> {
+    async findByEmail(email: string): Promise<User | undefined> {
         return this.ormRepository.findOne({ where: { email } });
     }
 
@@ -23,7 +23,7 @@ export default class UsersRepository implements IUsersRepository {
         return this.ormRepository.create(data);
     }
 
-    save(data: User): Promise<User> {
+    async save(data: User): Promise<User> {
         return this.ormRepository.save(data);
     }
 }
