@@ -19,7 +19,7 @@ export default class UsersRepository implements IUsersRepository {
         return this.ormRepository.findOne({ where: { email } });
     }
 
-    create(data: ICreateUserDTO): User {
+    async create(data: ICreateUserDTO): Promise<User> {
         return this.ormRepository.create(data);
     }
 

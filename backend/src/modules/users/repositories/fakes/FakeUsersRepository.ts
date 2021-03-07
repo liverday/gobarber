@@ -14,7 +14,7 @@ export default class FakeUsersRepository implements IUsersRepository {
         return this.users.find(user => user.email === email);
     }
 
-    create(data: ICreateUserDTO): User {
+    async create(data: ICreateUserDTO): Promise<User> {
         const user = new User();
 
         Object.assign(user, { id: uuid() }, { ...data });
