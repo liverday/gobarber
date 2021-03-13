@@ -8,7 +8,7 @@ describe('ListProviderMonthAvailabilityService', () => {
         fakeAppointmentsRepository = new FakeAppointmentsRepository();
     });
 
-    it('should be able to list the mont availability from provider', async () => {
+    it('should be able to list the month availability from provider', async () => {
         const hourStart = 8;
         await Promise.all([
             ...Array.from({ length: 10 }, (_, index) => index + hourStart).map(

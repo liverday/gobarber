@@ -22,7 +22,7 @@ export default class UsersController {
         response: Response,
     ): Promise<Response> {
         try {
-            const { name, email, oldPassword, password } = request.body;
+            const { name, email, old_password, password } = request.body;
 
             const updateProfileService = container.resolve(
                 UpdateProfileService,
@@ -32,7 +32,7 @@ export default class UsersController {
                 user_id: request.user.id,
                 name,
                 email,
-                oldPassword,
+                old_password,
                 password,
             });
 

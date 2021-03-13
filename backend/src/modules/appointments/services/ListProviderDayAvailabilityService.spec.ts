@@ -8,7 +8,7 @@ describe('ListProviderDayAvailabilityService', () => {
         fakeAppointmentsRepository = new FakeAppointmentsRepository();
     });
 
-    it('should be able to list the mont availability from provider', async () => {
+    it('should be able to list the day availability from provider', async () => {
         await Promise.all([
             fakeAppointmentsRepository.create({
                 user_id: 'user',
