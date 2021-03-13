@@ -34,7 +34,7 @@ describe('ResetPassword', () => {
 
         await resetPasswordService.execute({
             token,
-            newPassword: 'teste123',
+            password: 'teste123',
         });
 
         const updatedUser = await fakeUsersRepository.findById(user.id);
@@ -47,7 +47,7 @@ describe('ResetPassword', () => {
         await expect(
             resetPasswordService.execute({
                 token: 'non-existing-token',
-                newPassword: 'teste123',
+                password: 'teste123',
             }),
         ).rejects.toBeInstanceOf(AppError);
     });
@@ -60,7 +60,7 @@ describe('ResetPassword', () => {
         await expect(
             resetPasswordService.execute({
                 token,
-                newPassword: '123123',
+                password: '123123',
             }),
         ).rejects.toBeInstanceOf(AppError);
     });
@@ -83,7 +83,7 @@ describe('ResetPassword', () => {
         await expect(
             resetPasswordService.execute({
                 token,
-                newPassword: '123123',
+                password: '123123',
             }),
         ).rejects.toBeInstanceOf(AppError);
     });

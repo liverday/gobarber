@@ -44,7 +44,7 @@ class ResetPasswordService {
             throw new AppError('Token expired');
         }
 
-        user.password = await this.hashProvider.generateHash(newPassword);
+        user.password = await this.hashProvider.generateHash(password);
         await this.usersRepository.save(user);
     }
 }
