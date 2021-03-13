@@ -11,7 +11,7 @@ class UserTokensRepository implements IUsersTokenRepository {
         this.ormRepository = getRepository(UserToken);
     }
 
-    async generate(user_id: string): Promise<UserToken> {
+   public async generate(user_id: string): Promise<UserToken> {
         const userToken = this.ormRepository.create({
             user_id,
         });
@@ -21,7 +21,7 @@ class UserTokensRepository implements IUsersTokenRepository {
         return userToken;
     }
 
-    async findByToken(token: string): Promise<UserToken | undefined> {
+   public async findByToken(token: string): Promise<UserToken | undefined> {
         const userToken = await this.ormRepository.findOne({
             where: { token },
         });

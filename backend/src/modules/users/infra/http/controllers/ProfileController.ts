@@ -5,7 +5,7 @@ import UpdateProfileService from '@modules/users/services/UpdateProfileService';
 import ShowProfileService from '@modules/users/services/ShowProfileService';
 
 export default class UsersController {
-    async show(request: Request, response: Response): Promise<Response> {
+    public async show(request: Request, response: Response): Promise<Response> {
         const showProfileService = container.resolve(ShowProfileService);
 
         const user = await showProfileService.execute({
@@ -17,7 +17,10 @@ export default class UsersController {
         return response.json(user);
     }
 
-    async update(request: Request, response: Response): Promise<Response> {
+    public async update(
+        request: Request,
+        response: Response,
+    ): Promise<Response> {
         try {
             const { name, email, oldPassword, password } = request.body;
 
