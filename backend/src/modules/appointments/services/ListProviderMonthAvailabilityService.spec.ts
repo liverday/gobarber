@@ -14,12 +14,14 @@ describe('ListProviderMonthAvailabilityService', () => {
             ...Array.from({ length: 10 }, (_, index) => index + hourStart).map(
                 hour => {
                     return fakeAppointmentsRepository.create({
+                        user_id: 'user',
                         provider_id: 'provider',
                         date: new Date(2021, 2, 12, hour, 0, 0),
                     });
                 },
             ),
             fakeAppointmentsRepository.create({
+                user_id: 'user',
                 provider_id: 'provider',
                 date: new Date(2021, 2, 13, 8, 0, 0),
             }),
