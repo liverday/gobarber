@@ -1,15 +1,18 @@
 import AppError from '@shared/errors/AppError';
 import FakeNotificationsRepository from '@modules/notifications/repositories/fakes/FakeNotificationsRepository';
+import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import FakeAppointmentsRepository from '../repositories/fakes/FakeAppointmentsRepository';
 import CreateAppointmentService from './CreateAppointmentService';
 
 let fakeAppointmentsRepository: FakeAppointmentsRepository;
 let fakeNotificationsRepository: FakeNotificationsRepository;
+let fakeCacheProvider: FakeCacheProvider;
 
 describe('CreateAppointment', () => {
     beforeEach(() => {
         fakeAppointmentsRepository = new FakeAppointmentsRepository();
         fakeNotificationsRepository = new FakeNotificationsRepository();
+        fakeCacheProvider = new FakeCacheProvider();
     });
 
     it('should be able to create a new appointment', async () => {
@@ -20,6 +23,7 @@ describe('CreateAppointment', () => {
         const createAppointment = new CreateAppointmentService(
             fakeAppointmentsRepository,
             fakeNotificationsRepository,
+            fakeCacheProvider,
         );
 
         const appointment = await createAppointment.execute({
@@ -39,6 +43,7 @@ describe('CreateAppointment', () => {
         const createAppointment = new CreateAppointmentService(
             fakeAppointmentsRepository,
             fakeNotificationsRepository,
+            fakeCacheProvider,
         );
 
         const appointmentDate = new Date(2021, 0, 19, 13, 0, 0);
@@ -66,6 +71,7 @@ describe('CreateAppointment', () => {
         const createAppointment = new CreateAppointmentService(
             fakeAppointmentsRepository,
             fakeNotificationsRepository,
+            fakeCacheProvider,
         );
 
         await expect(
@@ -85,6 +91,7 @@ describe('CreateAppointment', () => {
         const createAppointment = new CreateAppointmentService(
             fakeAppointmentsRepository,
             fakeNotificationsRepository,
+            fakeCacheProvider,
         );
 
         await expect(
@@ -104,6 +111,7 @@ describe('CreateAppointment', () => {
         const createAppointment = new CreateAppointmentService(
             fakeAppointmentsRepository,
             fakeNotificationsRepository,
+            fakeCacheProvider,
         );
 
         await expect(
@@ -123,6 +131,7 @@ describe('CreateAppointment', () => {
         const createAppointment = new CreateAppointmentService(
             fakeAppointmentsRepository,
             fakeNotificationsRepository,
+            fakeCacheProvider,
         );
 
         await expect(
