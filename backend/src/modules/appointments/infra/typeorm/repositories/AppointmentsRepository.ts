@@ -5,6 +5,7 @@ import Appointment from '@modules/appointments/infra/typeorm/entities/Appointmen
 import ICreateAppointmentDTO from '@modules/appointments/dtos/ICreateAppointmentDTO';
 import IFindAllInMonthProviderDTO from '@modules/appointments/dtos/IFindAllInMonthFromProviderDTO';
 import IFindAllInDayProviderDTO from '@modules/appointments/dtos/IFindAllInDayFromProviderDTO';
+import IFindByDateFromProviderDTO from '@modules/appointments/dtos/IFindByDateFromProviderDTO';
 
 class AppointmentsRepository implements IAppointmentsRepository {
     private ormRepository: Repository<Appointment>;
@@ -28,9 +29,12 @@ class AppointmentsRepository implements IAppointmentsRepository {
         return appointment;
     }
 
-    public async findByDate(date: Date): Promise<Appointment | undefined> {
+    public async findByDate({
+        provider_id,
+        date,
+    }: IFindByDateFromProviderDTO): Promise<Appointment | undefined> {
         const findAppointmentInSameDate = await this.ormRepository.findOne({
-            where: { date },
+            where: { provider_id, date },
         });
 
         return findAppointmentInSameDate;
@@ -73,6 +77,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
                 `,
                 ),
             },
+            relations: ['user'],
         });
     }
 }

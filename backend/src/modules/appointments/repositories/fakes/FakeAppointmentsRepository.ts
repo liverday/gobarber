@@ -6,6 +6,7 @@ import Appointment from '@modules/appointments/infra/typeorm/entities/Appointmen
 import ICreateAppointmentDTO from '@modules/appointments/dtos/ICreateAppointmentDTO';
 import IFindAllInMonthProviderDTO from '@modules/appointments/dtos/IFindAllInMonthFromProviderDTO';
 import IFindAllInDayProviderDTO from '@modules/appointments/dtos/IFindAllInDayFromProviderDTO';
+import IFindByDateFromProviderDTO from '@modules/appointments/dtos/IFindByDateFromProviderDTO';
 
 class FakeAppointmentsRepository implements IAppointmentsRepository {
     private appointments: Appointment[] = [];
@@ -24,9 +25,14 @@ class FakeAppointmentsRepository implements IAppointmentsRepository {
         return appointment;
     }
 
-    public async findByDate(date: Date): Promise<Appointment | undefined> {
-        const findAppointmentInSameDate = this.appointments.find(appointment =>
-            isEqual(appointment.date, date),
+    public async findByDate({
+        provider_id,
+        date,
+    }: IFindByDateFromProviderDTO): Promise<Appointment | undefined> {
+        const findAppointmentInSameDate = this.appointments.find(
+            appointment =>
+                appointment.provider_id === provider_id &&
+                isEqual(appointment.date, date),
         );
 
         return findAppointmentInSameDate;
